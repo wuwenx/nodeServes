@@ -12,14 +12,14 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static('upload'))
+app.use(express.static('public'))
 app.use('/', index);
 app.use('/sup', superagent)
 app.use('/event',event)
 app.use('/buffer',buffer)
 app.use('/stream',stream)
 app.use('/util',util)
-
+app.use('/upload',util)
 module.exports = app;
 
 

@@ -35,8 +35,11 @@ router.post("/adduser", (req, res) => {
     if (!req.body.remake) {
         return res.send({ code: 0, message: "备注不能为空" })
     }
-    var addSql = 'INSERT INTO information(uName,uAge,uSex,`like`,address,remake,isDelete) VALUES(?,?,?,?,?,?,?)';
-    var addSqlParams = [req.body.uName, req.body.uAge, req.body.uSex, req.body.like, req.body.address, req.body.remake, 0];
+    if(!req.body.picture){
+        return res.send({ code: 0, message: "请上传图片" })
+    }
+    var addSql = 'INSERT INTO information(uName,uAge,uSex,`like`,address,picture,remake,isDelete) VALUES(?,?,?,?,?,?,?,?)';
+    var addSqlParams = [req.body.uName, req.body.uAge, req.body.uSex, req.body.like, req.body.address,req.body.picture, req.body.remake, 0];
     connection.query(addSql, addSqlParams, (err, result) => {
         if (err) return;
         console.log(result)
@@ -62,7 +65,7 @@ router.get("/removeUserinfor", (req, res) => {
 const storage = multer.diskStorage({
     //存储的位置
     destination(req, file, cb) {
-        cb(null, 'upload/')
+        cb(null, 'public/upload/')
     },
     //文件名字的确定 multer默认帮我们取一个没有扩展名的文件名，因此需要我们自己定义
     filename(req, file, cb) {
