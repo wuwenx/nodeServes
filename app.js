@@ -7,6 +7,7 @@ var event=require('./routers/event')
 var buffer=require('./routers/buffer')
 var stream=require('./routers/stream')
 var util=require('./routers/util')
+//var sequelize=require('./mysql/sequelize')
 var app = express();
 // 接收post请求需要添加
 app.use(bodyParser.json());

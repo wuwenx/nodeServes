@@ -1,2 +1,4 @@
 # nodeServes
 node
+
+sequelize ORM
